@@ -17,6 +17,9 @@ var (
 	stderr           = log.New(os.Stderr, "xlg: ", log.Flags())
 )
 
+// todo rename <xlg-redacted>
+// todo add count or tries in attrs when writer is throttled
+
 func SetOutput(w io.Writer) {
 	writer = w
 }
