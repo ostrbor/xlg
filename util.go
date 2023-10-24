@@ -72,6 +72,9 @@ func head2str(h http.Header) string {
 	return b.String()
 }
 
+// must be safe for use in header and url
+const redacted = "...xlg_redacted..."
+
 func redact(h http.Header) (c http.Header) {
 	if h == nil {
 		return nil
@@ -91,7 +94,7 @@ func redact(h http.Header) (c http.Header) {
 		}
 
 		if edit {
-			c[k] = []string{"<xlg redacted>"}
+			c[k] = []string{redacted}
 		}
 	}
 	return c
@@ -105,7 +108,7 @@ func redactURL(u *url.URL) *url.URL {
 	for k := range c.Query() {
 		switch k {
 		case "token", "password":
-			c.RawQuery = strings.Replace(c.RawQuery, c.Query().Get(k), "xlg_redacted", 1)
+			c.RawQuery = strings.Replace(c.RawQuery, c.Query().Get(k), redacted, 1)
 		}
 	}
 	return &c

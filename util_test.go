@@ -22,11 +22,11 @@ func TestRedact(t *testing.T) {
 		{name: "empty header", input: make(http.Header), expected: make(http.Header)},
 		{name: "redact authorization header",
 			input:    http.Header{"Authorization": []string{"Bearer token123"}},
-			expected: http.Header{"Authorization": []string{"<xlg redacted>"}},
+			expected: http.Header{"Authorization": []string{redacted}},
 		},
 		{name: "redact password and secret headers",
 			input:    http.Header{"X-Password": []string{"mypassword"}, "X-Secret": []string{"mysecret"}},
-			expected: http.Header{"X-Password": []string{"<xlg redacted>"}, "X-Secret": []string{"<xlg redacted>"}},
+			expected: http.Header{"X-Password": []string{redacted}, "X-Secret": []string{redacted}},
 		},
 		{name: "do not redact other headers",
 			input:    http.Header{"Content-Type": []string{"application/json"}},
@@ -239,7 +239,7 @@ func TestRedactURL(t *testing.T) {
 		{
 			name:     "redact token and password",
 			input:    "https://example.com/api?token=secret&password=secure&other=value",
-			expected: "https://example.com/api?token=xlg_redacted&password=xlg_redacted&other=value",
+			expected: "https://example.com/api?token=...xlg_redacted...&password=...xlg_redacted...&other=value",
 		},
 		{
 			name:     "no sensitive parameters",
