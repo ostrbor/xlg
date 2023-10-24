@@ -14,11 +14,15 @@ type FileWriter struct {
 }
 
 func (w *FileWriter) Write(p []byte) (n int, err error) {
-	filename := time.Now().Format("2006-01-02")
-	pathname := path.Join(w.Dir, filename)
-	// '-' in the beginning of the line signals that this line was not sent to collector
-	// todo append newline?
+	// Ensure the log line ends with a newline character.
+	// This check adds a newline if it's missing to maintain consistent log format.
+	if p[len(p)-1] != '\n' {
+		p = append(p, '\n')
+	}
+	// '- ' in the beginning of the line signals that this line was not sent to collector
 	line := append([]byte("- "), p...)
+
+	pathname := path.Join(w.Dir, filename())
 	w.mu.Lock()
 	defer w.mu.Unlock()
 	err = appendToFile(pathname, line)
@@ -43,4 +47,8 @@ func appendToFile(pathname string, line []byte) (err error) {
 		return err
 	}
 	return nil
+}
+
+func filename() string {
+	return time.Now().Format("2006-01-02") + ".log"
 }
