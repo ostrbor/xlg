@@ -141,7 +141,7 @@ func (r Record) WriteOnceIn(period string) {
 		if r.ReqMethod != "" && r.ReqPath != "" {
 			r.Message = httpMsg(r.ReqMethod, r.ReqPath, r.RespStatus)
 		} else {
-			r.Message = "<xlog empty>"
+			r.Message = "xlog_empty"
 		}
 	}
 
@@ -150,7 +150,7 @@ func (r Record) WriteOnceIn(period string) {
 	}
 
 	var pcs [1]uintptr
-	runtime.Callers(2, pcs[:]) // skip [Callers, Write]
+	runtime.Callers(3, pcs[:]) // skip [Callers, WriteOnceIn, Write]
 	fs := runtime.CallersFrames([]uintptr{pcs[0]})
 	f, _ := fs.Next()
 	r.Source = &Source{

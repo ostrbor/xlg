@@ -65,8 +65,8 @@ func TestRecord_Err(t *testing.T) {
 	}
 
 	l = New().Err(nil)
-	if l.Error != "<xlg nil>" {
-		t.Errorf("expected error '%s', got '%s'", "<xlg nil>", l.Error)
+	if l.Error != "xlg_nil" {
+		t.Errorf("expected error '%s', got '%s'", "xlg_nil", l.Error)
 	}
 }
 

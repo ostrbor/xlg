@@ -94,7 +94,7 @@ func TestTruncate(t *testing.T) {
 	t.Run("body longer than max", func(t *testing.T) {
 		input := make([]byte, bodyMaxBytes+10)
 		result := truncate(input)
-		expectedLen := bodyMaxBytes + len(fmt.Sprintf("...<xlg truncated %d bytes>", 10))
+		expectedLen := bodyMaxBytes + len(fmt.Sprintf("...xlg_truncated %d bytes", 10))
 		if len(result) != expectedLen {
 			t.Errorf("expected truncated body length to be %d, got: %d", expectedLen, len(result))
 		}
@@ -104,7 +104,7 @@ func TestTruncate(t *testing.T) {
 func TestFnName(t *testing.T) {
 	t.Run("nil input", func(t *testing.T) {
 		result := fnName(nil)
-		expected := "<xlg nil>"
+		expected := "xlg_nil"
 		if result != expected {
 			t.Errorf("expected: %s, got: %s", expected, result)
 		}
@@ -130,7 +130,7 @@ func TestFnName(t *testing.T) {
 	t.Run("unsupported type input", func(t *testing.T) {
 		var unsupportedType struct{}
 		result := fnName(unsupportedType)
-		expected := fmt.Sprintf("<xlg unsupported: %s>", reflect.TypeOf(unsupportedType).Kind())
+		expected := fmt.Sprintf("xlg unsupported: %s", reflect.TypeOf(unsupportedType).Kind())
 		if result != expected {
 			t.Errorf("expected: %s, got: %s", expected, result)
 		}

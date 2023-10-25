@@ -31,7 +31,7 @@ func (r Record) Err(e error) Record {
 	if e != nil {
 		r.Error = e.Error()
 	} else {
-		r.Error = "<xlg nil>"
+		r.Error = "xlg_nil"
 	}
 	return r
 }

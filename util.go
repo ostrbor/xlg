@@ -19,7 +19,7 @@ import (
 // when it's a string, and an error for unsupported types.
 func fnName(fn any) string {
 	if fn == nil {
-		return "<xlg nil>"
+		return "xlg_nil"
 	}
 
 	k := reflect.TypeOf(fn).Kind()
@@ -29,7 +29,7 @@ func fnName(fn any) string {
 	case reflect.Func:
 		return runtime.FuncForPC(reflect.ValueOf(fn).Pointer()).Name()
 	default:
-		return fmt.Sprintf("<xlg unsupported: %s>", k)
+		return fmt.Sprintf("xlg unsupported: %s", k)
 	}
 }
 
@@ -51,7 +51,7 @@ const bodyMaxBytes = 5 * 1 << 10
 func truncate(body []byte) []byte {
 	if len(body) > bodyMaxBytes {
 		b := body[:bodyMaxBytes]
-		return append(b, []byte(fmt.Sprintf("...<xlg truncated %d bytes>", len(body)-len(b)))...)
+		return append(b, []byte(fmt.Sprintf("...xlg_truncated %d bytes", len(body)-len(b)))...)
 	}
 	return body
 }
