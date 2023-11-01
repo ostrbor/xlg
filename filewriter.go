@@ -20,7 +20,7 @@ func (w *FileWriter) Write(p []byte) (n int, err error) {
 		p = append(p, '\n')
 	}
 	// '- ' in the beginning of the line signals that this line was not sent to collector
-	line := append([]byte("- "), p...)
+	line := append([]byte("-"), p...)
 
 	pathname := path.Join(w.Dir, filename())
 	w.mu.Lock()
