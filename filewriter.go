@@ -7,6 +7,17 @@ import (
 	"time"
 )
 
+const (
+	// Constants like FileFormat and FileSuffix are exported for use in xlg-agent
+	// to facilitate log file identification.
+	FileFormat = "2006-01-02"
+	FileSuffix = ".log"
+
+	// The presence of NotSentMark at the beginning of a line serves as an indicator
+	// that the line has not been transmitted to the collector.
+	NotSentMark = '-'
+)
+
 type FileWriter struct {
 	mu sync.Mutex
 	// Dir is a directory where log files are stored.
@@ -19,8 +30,7 @@ func (w *FileWriter) Write(p []byte) (n int, err error) {
 	if p[len(p)-1] != '\n' {
 		p = append(p, '\n')
 	}
-	// '- ' in the beginning of the line signals that this line was not sent to collector
-	line := append([]byte("-"), p...)
+	line := append([]byte{NotSentMark}, p...)
 
 	pathname := path.Join(w.Dir, filename())
 	w.mu.Lock()
@@ -50,5 +60,5 @@ func appendToFile(pathname string, line []byte) (err error) {
 }
 
 func filename() string {
-	return time.Now().Format("2006-01-02") + ".log"
+	return time.Now().Format(FileFormat) + FileSuffix
 }
