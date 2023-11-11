@@ -12,8 +12,29 @@ func TestFileWriter(t *testing.T) {
 	writer := FileWriter{Dir: tempDir}
 	msg := `{"message":"test"}`
 
-	t.Run("log line has '- ' in the beginning", func(t *testing.T) {
+	t.Run("log line has '-' in the beginning", func(t *testing.T) {
 		logLine := []byte(msg + "\n")
+		n, err := writer.Write(logLine)
+		if err != nil {
+			t.Errorf("expected no error, but got %v", err)
+		}
+		if n != len(logLine)+1 {
+			t.Errorf("expected %d bytes written, but wrote %d bytes", len(logLine)+1, n)
+		}
+
+		filePath := filepath.Join(tempDir, filename())
+		fileContent, err := os.ReadFile(filePath)
+		if err != nil {
+			t.Fatalf("error reading log file: %v", err)
+		}
+		defer os.Remove(filePath)
+		if string(fileContent) != "-"+msg+"\n" {
+			t.Error("log file content does not match expected")
+		}
+	})
+
+	t.Run("log line ends with one newline", func(t *testing.T) {
+		logLine := []byte(msg)
 		n, err := writer.Write(logLine)
 		if err != nil {
 			t.Errorf("expected no error, but got %v", err)
@@ -28,28 +49,7 @@ func TestFileWriter(t *testing.T) {
 			t.Fatalf("error reading log file: %v", err)
 		}
 		defer os.Remove(filePath)
-		if string(fileContent) != "- "+msg+"\n" {
-			t.Error("log file content does not match expected")
-		}
-	})
-
-	t.Run("log line ends with one newline", func(t *testing.T) {
-		logLine := []byte(msg)
-		n, err := writer.Write(logLine)
-		if err != nil {
-			t.Errorf("expected no error, but got %v", err)
-		}
-		if n != len(logLine)+3 {
-			t.Errorf("expected %d bytes written, but wrote %d bytes", len(logLine)+3, n)
-		}
-
-		filePath := filepath.Join(tempDir, filename())
-		fileContent, err := os.ReadFile(filePath)
-		if err != nil {
-			t.Fatalf("error reading log file: %v", err)
-		}
-		defer os.Remove(filePath)
-		if string(fileContent) != "- "+msg+"\n" {
+		if string(fileContent) != "-"+msg+"\n" {
 			t.Error("log file content does not match expected")
 		}
 
