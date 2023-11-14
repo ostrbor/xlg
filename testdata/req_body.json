@@ -1,0 +1,135 @@
+{
+  "ShipmentRequest": {
+    "Shipment": {
+      "Service": {
+        "Code": "65"
+      },
+      "Description": "book",
+      "Shipper": {
+        "AttentionName": "COMPANY",
+        "Name": "COMPANY NAME, INC.",
+        "ShipperNumber": "NUMBER",
+        "Address": {
+          "AddressLine": "ADDRESS",
+          "City": "CITY",
+          "StateProvinceCode": "ST",
+          "PostalCode": "11111",
+          "CountryCode": "US"
+        },
+        "Phone": {
+          "Number": "1111111111"
+        }
+      },
+      "ShipFrom": {
+        "Name": "NAME SURNAME",
+        "Address": {
+          "AddressLine": "ADDRESS LINE",
+          "City": "CITY",
+          "StateProvinceCode": "ST",
+          "PostalCode": "11111",
+          "CountryCode": "US"
+        },
+        "Phone": {
+          "Number": "1111111111"
+        }
+      },
+      "ShipTo": {
+        "AttentionName": "NAME SURNAME",
+        "Name": "Shipper",
+        "Address": {
+          "AddressLine": "ADDRESS LINE",
+          "City": "CITY",
+          "PostalCode": "11111",
+          "CountryCode": "IL"
+        },
+        "Phone": {
+          "Number": "111111111"
+        },
+        "EMailAddress": "email@somemail.com"
+      },
+      "PaymentInformation": {
+        "ShipmentCharge": {
+          "Type": "01",
+          "BillShipper": {
+            "AccountNumber": "NUMBER"
+          }
+        }
+      },
+      "Package": [
+        {
+          "Packaging": {
+            "Code": "02"
+          },
+          "Dimensions": {
+            "UnitOfMeasurement": {
+              "Code": "IN"
+            },
+            "Length": "15",
+            "Width": "10",
+            "Height": "2"
+          },
+          "PackageWeight": {
+            "UnitOfMeasurement": {
+              "Code": "LBS"
+            },
+            "Weight": "6"
+          }
+        }
+      ],
+      "ShipmentServiceOptions": {
+        "InternationalForms": {
+          "FormType": "01",
+          "CurrencyCode": "USD",
+          "InvoiceNumber": "123456",
+          "InvoiceDate": "20220928",
+          "ReasonForExport": "SALE",
+          "Product": [
+            {
+              "Description": "book",
+              "OriginCountryCode": "US",
+              "Unit": {
+                "Number": "1",
+                "UnitOfMeasurement": {
+                  "Code": "PCS"
+                },
+                "Value": "10"
+              }
+            },
+            {
+              "Description": "thing",
+              "OriginCountryCode": "US",
+              "Unit": {
+                "Number": "2",
+                "UnitOfMeasurement": {
+                  "Code": "PCS"
+                },
+                "Value": "11"
+              }
+            }
+          ],
+          "Contacts": {
+            "SoldTo": {
+              "AttentionName": "NAME SURNAME",
+              "Name": "Shipper",
+              "TaxIdentificationNumber": "111",
+              "Phone": {
+                "Number": "111111111"
+              },
+              "Address": {
+                "AddressLine": "Address Line",
+                "City": "City",
+                "PostalCode": "11111",
+                "CountryCode": "IL"
+              }
+            }
+          }
+        }
+      }
+    },
+    "LabelSpecification": {
+      "LabelImageFormat": {
+        "Code": "PNG"
+      }
+    }
+  }
+}
