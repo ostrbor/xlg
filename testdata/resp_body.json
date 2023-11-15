@@ -1,0 +1,78 @@
+{
+  "ShipmentResponse": {
+    "Response": {
+      "ResponseStatus": {
+        "Code": "1",
+        "Description": "Success"
+      },
+      "TransactionReference": ""
+    },
+    "ShipmentResults": {
+      "ShipmentCharges": {
+        "TransportationCharges": {
+          "CurrencyCode": "USD",
+          "MonetaryValue": "389.27"
+        },
+        "ServiceOptionsCharges": {
+          "CurrencyCode": "USD",
+          "MonetaryValue": "0.00"
+        },
+        "TotalCharges": {
+          "CurrencyCode": "USD",
+          "MonetaryValue": "389.27"
+        }
+      },
+      "BillingWeight": {
+        "UnitOfMeasurement": {
+          "Code": "LBS",
+          "Description": "Pounds"
+        },
+        "Weight": "12.0"
+      },
+      "ShipmentIdentificationNumber": "1ZXXXXXXXXXXXXXXXX",
+      "PackageResults": [
+        {
+          "TrackingNumber": "1ZXXXXXXXXXXXXXXXX",
+          "ServiceOptionsCharges": {
+            "CurrencyCode": "USD",
+            "MonetaryValue": "0.00"
+          },
+          "ShippingLabel": {
+            "ImageFormat": {
+              "Code": "PNG",
+              "Description": "PNG"
+            },
+            "GraphicImage": "...",
+            "HTMLImage": "..."
+          }
+        },
+        {
+          "TrackingNumber": "1ZXXXXXXXXXXXXXXXX",
+          "ServiceOptionsCharges": {
+            "CurrencyCode": "USD",
+            "MonetaryValue": "0.00"
+          },
+          "ShippingLabel": {
+            "ImageFormat": {
+              "Code": "PNG",
+              "Description": "PNG"
+            },
+            "GraphicImage": "...",
+            "HTMLImage": "..."
+          }
+        }
+      ],
+      "Form": {
+        "Code": "01",
+        "Description": "All Requested International Forms",
+        "Image": {
+          "ImageFormat": {
+            "Code": "PDF",
+            "Description": "PDF"
+          },
+          "GraphicImage": "..."
+        }
+      }
+    }
+  }
+}
