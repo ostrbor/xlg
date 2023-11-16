@@ -8,10 +8,8 @@ import (
 )
 
 const (
-	// Constants like FileFormat and FileSuffix are exported for use in xlg-agent
-	// to facilitate log file identification.
+	// Constant FileFormat is exported for use in xlg-agent to facilitate log file identification.
 	FileFormat = "2006-01-02"
-	FileSuffix = ".log"
 
 	// The presence of NotSentMark at the beginning of a line serves as an indicator
 	// that the line has not been transmitted to the collector.
@@ -60,5 +58,5 @@ func appendToFile(pathname string, line []byte) (err error) {
 }
 
 func filename() string {
-	return time.Now().Format(FileFormat) + FileSuffix
+	return time.Now().Format(FileFormat)
 }
