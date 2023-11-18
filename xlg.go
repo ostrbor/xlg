@@ -128,6 +128,7 @@ type key struct {
 }
 
 var (
+	// todo memory leak, as cache grows indefinitely
 	cache = make(map[key]time.Time)
 	mu    sync.Mutex
 )
